@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[전사 공지] 2026 Naver Agency Connect 세미나 리포트</title>
+<style>
+  :root{
+    --green:#03C75A; --green-d:#02934a; --ink:#16191d; --muted:#5b636b;
+    --line:#e6e9ec; --bg:#eef1f4; --card:#fff; --dark:#0c2a1c;
+    --warn:#fff6df; --warn-b:#eeb600; --key:#e7faf0; --note:#eaf1fb;
+    --est:#ffe39a; --est-t:#7a5500; --pur:#7b61ff;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic","Segoe UI",sans-serif;
+    line-height:1.62;font-size:15px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1000px;margin:0 auto;padding:28px 18px 80px}
+
+  /* HERO */
+  header.hero{background:radial-gradient(120% 140% at 0% 0%,#0bd968 0%,#03C75A 38%,#067a3d 100%);
+    color:#fff;border-radius:20px;padding:38px 34px;position:relative;overflow:hidden;
+    box-shadow:0 10px 36px rgba(3,199,90,.25)}
+  header.hero::after{content:"";position:absolute;right:-60px;top:-60px;width:260px;height:260px;
+    background:rgba(255,255,255,.12);border-radius:50%}
+  .hero .kicker{font-size:13px;font-weight:700;letter-spacing:1px;opacity:.9}
+  header.hero h1{margin:8px 0 10px;font-size:30px;line-height:1.25}
+  .hero .sub{font-size:14px;opacity:.96;line-height:1.9;max-width:680px}
+  .hero .chips{margin-top:16px;display:flex;gap:8px;flex-wrap:wrap}
+  .hero .chips span{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);
+    padding:5px 12px;border-radius:20px;font-size:12.5px;font-weight:600}
+
+  /* AT A GLANCE */
+  .glance{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:22px 0 8px}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center;
+    box-shadow:0 2px 8px rgba(0,0,0,.03)}
+  .stat .n{font-size:30px;font-weight:800;color:var(--green-d);line-height:1.1}
+  .stat .l{font-size:12.5px;color:var(--muted);margin-top:6px}
+  .dates{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:14px 0 26px}
+  .date{background:var(--dark);color:#eafff3;border-radius:14px;padding:14px 16px}
+  .date .d{font-size:18px;font-weight:800;color:#5cf2a0}
+  .date .t{font-size:12.5px;opacity:.9;margin-top:4px}
+
+  .legend{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 22px}
+  .legend span{font-size:12.5px;padding:4px 10px;border-radius:20px;border:1px solid var(--line);background:#fff}
+  .badge{display:inline-block;font-size:11px;font-weight:700;padding:1px 7px;border-radius:5px;vertical-align:middle;margin-left:3px}
+  .est{background:var(--est);color:var(--est-t)}
+  .ok{background:#d6f5e3;color:#0a7a3f}
+
+  nav.toc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 20px;margin-bottom:24px}
+  nav.toc b{display:block;font-size:13px;color:var(--muted);margin-bottom:8px;letter-spacing:.3px}
+  nav.toc ol{margin:0;padding-left:20px;columns:2;column-gap:28px}
+  nav.toc a{color:var(--ink);text-decoration:none}
+  nav.toc a:hover{color:var(--green-d);text-decoration:underline}
+
+  section{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px 26px;margin-bottom:20px}
+  .sesstag{display:inline-block;background:var(--green);color:#fff;font-size:12px;font-weight:800;
+    padding:3px 12px;border-radius:20px;letter-spacing:.5px;margin-bottom:8px}
+  h2{font-size:21px;margin:2px 0 4px;line-height:1.3}
+  .lead{color:var(--muted);font-size:14px;margin:0 0 6px}
+  h3{font-size:16px;margin:22px 0 10px;color:#0a3d24;padding-left:12px;border-left:4px solid var(--green)}
+  p{margin:8px 0}
+  ul,ol{margin:8px 0;padding-left:22px}
+  li{margin:5px 0}
+
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
+  th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
+  th{background:#eef4f1;font-weight:700}
+  tr:nth-child(even) td{background:#fafcfb}
+
+  .callout{border-radius:12px;padding:13px 16px;margin:14px 0;font-size:14px}
+  .key{background:var(--key);border-left:4px solid var(--green)}
+  .warn{background:var(--warn);border-left:4px solid var(--warn-b)}
+  .note{background:var(--note);border-left:4px solid #4a7fd0}
+  .tag{display:inline-block;background:#eef2f4;border:1px solid var(--line);border-radius:6px;padding:2px 9px;margin:2px 3px 2px 0;font-size:12.5px}
+
+  /* paradigm timeline */
+  .flow{display:flex;align-items:stretch;gap:0;flex-wrap:wrap;margin:14px 0}
+  .flow .step{flex:1;min-width:160px;background:#f3f8f5;border:1px solid var(--line);border-radius:12px;padding:14px;position:relative}
+  .flow .step .num{font-size:12px;font-weight:800;color:var(--green-d)}
+  .flow .step h4{margin:4px 0 6px;font-size:15px}
+  .flow .step p{font-size:13px;color:var(--muted);margin:0}
+  .flow .arrow{display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--green);padding:0 6px}
+  .flow .step.hot{background:#e7faf0;border-color:var(--green)}
+
+  /* funnel / ladder */
+  .ladder{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+  .rung{display:flex;align-items:center;gap:12px;border-radius:10px;padding:11px 16px;color:#06301d;font-weight:600;border:1px solid var(--line)}
+  .rung .s{font-size:12px;font-weight:800;background:#fff;border-radius:6px;padding:2px 8px;border:1px solid var(--line)}
+  .funnel .rung{justify-content:space-between}
+
+  /* advoost cards */
+  .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:12px 0}
+  .pcard{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fafdfb}
+  .pcard h4{margin:0 0 4px;font-size:15px;color:var(--green-d)}
+  .pcard p{margin:0;font-size:13px;color:var(--muted)}
+
+  /* two-col compare */
+  .vs{display:grid;grid-template-columns:1fr 44px 1fr;gap:8px;align-items:stretch;margin:14px 0}
+  .vs .col{border-radius:12px;padding:14px}
+  .vs .now{background:#f1f3f5;border:1px solid var(--line)}
+  .vs .ai{background:#e7faf0;border:1px solid var(--green)}
+  .vs .vsm{display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--muted)}
+  .vs h4{margin:0 0 8px;font-size:14px}
+  .vs ul{padding-left:18px;margin:0}.vs li{font-size:13px}
+
+  /* roadmap */
+  .road{display:flex;gap:0;overflow-x:auto;padding:6px 0;margin:12px 0}
+  .road .pt{min-width:135px;flex:1;text-align:center;position:relative;padding:0 6px}
+  .road .pt .dot{width:14px;height:14px;border-radius:50%;background:var(--green);margin:0 auto 8px;position:relative;z-index:1}
+  .road .pt.fut .dot{background:var(--pur)}
+  .road .pt::before{content:"";position:absolute;top:6px;left:-50%;width:100%;height:2px;background:var(--line)}
+  .road .pt:first-child::before{display:none}
+  .road .pt .when{font-size:12px;font-weight:800;color:var(--green-d)}
+  .road .pt.fut .when{color:var(--pur)}
+  .road .pt .what{font-size:12.5px;color:var(--ink);margin-top:3px}
+
+  /* gallery — 슬라이드 한 장이 한 화면에 크게 보이도록 */
+  .gallery{display:grid;grid-template-columns:1fr;gap:18px;margin-top:12px}
+  .gallery figure{margin:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#0c0c0c}
+  .gallery img{width:100%;height:auto;max-height:88vh;object-fit:contain;display:block;image-orientation:from-image;background:#0c0c0c;margin:0 auto}
+  .gallery figcaption{font-size:13px;color:#fff;background:#222;padding:8px 10px;text-align:center}
+
+  .small{font-size:13px;color:var(--muted)}
+  hr{border:0;border-top:1px dashed var(--line);margin:18px 0}
+  footer{text-align:center;color:var(--muted);font-size:12.5px;margin-top:28px;line-height:1.8}
+  @media(max-width:760px){.glance,.dates{grid-template-columns:repeat(2,1fr)}.cards{grid-template-columns:1fr}nav.toc ol{columns:1}.vs{grid-template-columns:1fr}.vs .vsm{padding:4px}}
+  @media print{body{background:#fff}section,header.hero{box-shadow:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="kicker">전사 공지 · 세미나 참석 리포트</div>
+  <h1>2026 Naver Agency Connect<br>핵심 내용 총정리</h1>
+  <div class="sub">
+    네이버 광고 공식 파트너사 대상 <b>2026년 전략 · 제품 업데이트</b> 공유 세미나.<br>
+    "AI가 바꾸는 검색·광고 환경" 속에서 네이버와 파트너가 함께 갈 방향을 제시했습니다.
+  </div>
+  <div class="chips">
+    <span>📅 2026-05-28</span><span>📍 네이버 1784 Skyhall</span>
+    <span>Session 1 · NCPP 파트너십</span><span>Session 2 · AI 새 비전</span><span>Session 3 · 파트너 역할</span>
+  </div>
+</header>
+
+<!-- AT A GLANCE -->
+<div class="glance">
+  <div class="stat"><div class="n">50%+</div><div class="l">1분기 광고매출 성장 중 AI 기여</div></div>
+  <div class="stat"><div class="n">~10배</div><div class="l">AI 쇼핑 후속전환 증가</div></div>
+  <div class="stat"><div class="n">+160%</div><div class="l">ADVoost Shopping 집중 A사 GMV<br><span class="small">(성장의 ~80%가 ADVoost Shopping 광고주)</span></div></div>
+  <div class="stat"><div class="n">+64%<span class="small">/년</span></div><div class="l">3개+ 동시집행 시 광고비 성장</div></div>
+</div>
+<div class="dates">
+  <div class="date"><div class="d">5/7~7/2</div><div class="t">AI 브리핑 광고 무과금 베타 (8주)</div></div>
+  <div class="date"><div class="d">7월</div><div class="t">원페이 통합계약(MCP 포함)</div></div>
+  <div class="date"><div class="d">3분기</div><div class="t">신규 AI 광고 상품 출시</div></div>
+  <div class="date"><div class="d">4분기</div><div class="t">AI 광고 에이전트 공개 · AI탭 정량</div></div>
+</div>
+
+<nav class="toc">
+  <b>목차</b>
+  <ol>
+    <li><a href="#intro">세미나 개요 · 3대 질문</a></li>
+    <li><a href="#s1">Session 1 — NCPP 파트너십</a></li>
+    <li><a href="#s2">Session 2 — AI가 그리는 새 비전</a></li>
+    <li><a href="#s3">Session 3 — 파트너 역할 전환</a></li>
+    <li><a href="#qa">Q&amp;A 정리</a></li>
+    <li><a href="#todo">파트너사가 준비할 것</a></li>
+    <li><a href="#gallery">원본 발표 슬라이드</a></li>
+  </ol>
+</nav>
+
+<section id="intro">
+  <h2>세미나 개요</h2>
+  <p class="lead">한재영 전무(세일즈 부문) 환영사에서 제시한 <b>3가지 질문</b>이 전체 세션을 관통합니다.</p>
+  <div class="flow">
+    <div class="step"><div class="num">Q1</div><h4>검증된 성공 공식</h4><p>~100개 파트너사와 확인된 성장 방정식은?</p></div>
+    <div class="arrow">→</div>
+    <div class="step"><div class="num">Q2</div><h4>AI 시대 네이버의 방향</h4><p>검색·광고를 어떻게 바꾸고 있나?</p></div>
+    <div class="arrow">→</div>
+    <div class="step"><div class="num">Q3</div><h4>네이버+파트너 협업</h4><p>그래서 함께 어떻게 움직여야 하나?</p></div>
+  </div>
+</section>
+
+<!-- SESSION 1 -->
+<section id="s1">
+  <div class="sesstag">SESSION 1</div>
+  <h2>2026 NCPP 파트너십 인사이트</h2>
+  <p class="lead">발표: 유경우 리더 (채널 컨설팅 2팀) · NCPP = 네이버 공식 파트너 프로그램</p>
+
+  <h3>제도 4대 변화</h3>
+  <table>
+    <tr><th>변화</th><th>핵심</th></tr>
+    <tr><td>① 통합 / 시너지</td><td>'전문 대행사' 구분 흐려짐 — <b>3개 이상 크로스셀링 파트너 비중 2배 증가</b></td></tr>
+    <tr><td>② 프리미엄 파트너</td><td>올해 25개사. 분기별 10개사 인센티브. 매출 + <b>전략정책 기여도</b> 평가</td></tr>
+    <tr><td>③ 전략 파트너</td><td>신규영역(셀러·글로벌·금융 등)을 전문 파트너와 공략 · 계속 확장. <b>영역별 목표 약 3천억 규모</b>, 다른 영역은 <b>직접 운영 광고주 48개·연 100억</b> 목표로 시작</td></tr>
+    <tr><td>④ 지원 프로그램 확충</td><td>아래 혜택 프로그램</td></tr>
+  </table>
+
+  <h3>혜택 프로그램 — 3축 <span class="small">(주요 항목)</span></h3>
+  <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+    <div class="pcard"><h4>Business &amp; Benefit</h4><p>채용 · 금융 · 미디어 진단도구 · 데이터 활용 · 신규 디스플레이(DOOH 등)</p></div>
+    <div class="pcard"><h4>Sales Support</h4><p>PA 컨설팅 · 성장 프로그램 · 3rd Party Solution · CBT 광고 기회</p></div>
+    <div class="pcard"><h4>Partnership &amp; Alliance</h4><p>Naver Ads Expert 인증 · Awards · 신규 마케터 온보딩(루키) · 전략파트너 · 프리미엄 셀러</p></div>
+  </div>
+  <p class="small">신설 프로그램: <b>루키</b>(신규 마케터 온보딩) · <b>Naver Ads Expert</b>(광고 자격증 — 디스플레이·검색 <b>6월</b> 론칭, ADVoost·크리에이티브 <b>9월</b> 예정) · <b>네오</b>(실무진 프리미엄, 각 사 2명·총 50명) · <b>미디어 진단도구</b>(하반기 전체 확대).</p>
+
+  <h3>검증된 성공 공식 ★</h3>
+  <div class="callout key"><b>"스페셜리티(전문성)보다 Utility(다재다능)의 시대"</b> — 고성장 파트너의 공통점은 <b>성장 카테고리 집중</b>. 작년 프리미엄 파트너 평균 17% 성장.</div>
+
+  <h4 style="margin:16px 0 6px;color:#0a3d24">커머스 — ADVoost Shopping (가장 전략적 상품, 출시 후 ~2배 성장)</h4>
+  <div class="glance" style="grid-template-columns:repeat(3,1fr);margin:10px 0">
+    <div class="stat"><div class="n">73%</div><div class="l">광고비 효율 개선<br><span class="small">(신규고객 발굴 효과)</span></div></div>
+    <div class="stat"><div class="n">93%</div><div class="l">매출 증대<br><span class="small">(2개월+ 집중 집행 광고주)</span></div></div>
+    <div class="stat"><div class="n">91%</div><div class="l">운영시간 절감<br><span class="small">(거래액 최대 +90% · ROAS 유지)</span></div></div>
+  </div>
+  <p class="small">※ ADVoost Shopping 성과 분석 결과 — 핵심 성공 요인: 신규고객 발굴형 투자 · 2개월 이상 집중 집행 · 쇼핑검색 연동.</p>
+
+  <h4 style="margin:16px 0 6px;color:#0a3d24">중형 광고주 — 크로스셀링 미디어 믹스</h4>
+  <div class="ladder funnel">
+    <div class="rung" style="background:#dff3ff"><span>파워링크 <span class="s">START</span></span><span class="small">1차</span></div>
+    <div class="rung" style="background:#d8f0e6"><span>쇼핑검색광고</span><span class="small">2차</span></div>
+    <div class="rung" style="background:#cdeede"><span>성과형 디스플레이(GFA)</span><span class="small">3차</span></div>
+    <div class="rung" style="background:#c2ecd6"><span>브랜드검색</span><span class="small">4차</span></div>
+    <div class="rung" style="background:#b3e8cc"><span>신규 디스플레이 광고</span><span class="small">5차</span></div>
+  </div>
+  <p class="small">3개 이상 동시 집행 시 광고비 성장률 <b>연 64%</b>. <b>PA 컨설팅 / PB 프로그램</b>으로 초반 레퍼런스 확보(참여 후 광고비 ~50%↑, COZYMA +95%). <b>연 100~120건이나 한 번도 신청 안 한 파트너 다수 → 적극 신청 권장.</b></p>
+  <p>키워드: <span class="tag">#Cross-Selling</span><span class="tag">#ADVoost</span><span class="tag">#PA컨설팅</span><span class="tag">#Commerce</span><span class="tag">#Mid</span><span class="tag">#AEO</span><span class="tag">#Utility</span></p>
+</section>
+
+<!-- SESSION 2 -->
+<section id="s2">
+  <div class="sesstag">SESSION 2</div>
+  <h2>네이버 광고 AI가 그리는 새로운 비전</h2>
+  <p class="lead">발표: 노재현 매니저 (채널 컨설팅 3팀)</p>
+
+  <h3>검색 패러다임의 진화 = 위기가 아닌 기회</h3>
+  <div class="flow">
+    <div class="step"><div class="num">1단계 🔍</div><h4>정보탐색 시대</h4><p>키워드 입력, 결과목록 직접 탐색</p></div>
+    <div class="arrow">→</div>
+    <div class="step"><div class="num">2단계 ⚡</div><h4>AI 답변 시대</h4><p>AI가 요약 답변 제공, 체류·클릭 감소</p></div>
+    <div class="arrow">→</div>
+    <div class="step hot"><div class="num">3단계 🤖</div><h4>AI 에이전트 시대</h4><p>AI가 탐색·비교 대행, 사용자는 의사결정만</p></div>
+  </div>
+  <div class="callout note"><b>역설</b>: 글로벌 AI가 강해질수록 한국어 맥락·구매여정·생활밀착 생태계를 가진 <b>네이버 데이터의 가치는 더 올라간다.</b> 광고는 "입찰 1위 경쟁"에서 <b>"맥락 최적화(AEO)"</b>로 이동.</div>
+  <div class="glance" style="grid-template-columns:repeat(3,1fr);margin:6px 0">
+    <div class="stat"><div class="n">50%+</div><div class="l">광고매출 성장 중 AI 기여(1Q)</div></div>
+    <div class="stat"><div class="n">~10배</div><div class="l">AI 쇼핑 후속전환</div></div>
+    <div class="stat"><div class="n">~2.5배</div><div class="l">AI 쇼핑 거래액(전년동기比)</div></div>
+  </div>
+
+  <h3>3대 신규 비전 상품</h3>
+  <div class="cards">
+    <div class="pcard"><h4>① AI 브리핑 광고</h4><p>검색 흐름 내 요약 답변. <b>키워드·입찰·소재 통제 불가</b> → AI가 광고주 자산에서 자동 매칭·생성, 최대 3개 노출. <b>랜딩 사이트가 곧 소재.</b> 매출 커버리지 <b>작년말 ~20% → 올해 40%</b>로 확대 예정.</p></div>
+    <div class="pcard"><h4>② AI 탭</h4><p>새 탐색공간. 쇼핑·플레이스·페이가 탭 안에서 작동(예약·구매까지). 4월 멤버십 베타→하반기 전체. <b>광고상품 3분기 안내.</b></p></div>
+  </div>
+
+  <div class="callout warn">
+    <b>AI 브리핑 광고 베타 — 무과금, 5/7~7/2 (8주). 먼저 학습시킨 광고주가 선점 우위!</b>
+    <div class="flow" style="margin:10px 0 0">
+      <div class="step" style="background:#fff"><div class="num">준비 ①</div><h4>계정 점검</h4><p>ADVoost 검색/쇼핑·쇼핑검색광고 운영 시 자동 참여</p></div>
+      <div class="arrow">+</div>
+      <div class="step" style="background:#fff"><div class="num">준비 ②</div><h4>랜딩 AEO 최적화</h4><p>셀링포인트·FAQ·스펙 구조화(AI 이해도↑)</p></div>
+      <div class="arrow">+</div>
+      <div class="step" style="background:#fff"><div class="num">준비 ③</div><h4>전환 태그 연동</h4><p>AI 학습 속도 향상</p></div>
+    </div>
+  </div>
+
+  <h4 style="margin:18px 0 6px;color:#0a3d24">③ ADVoost — AI 자동화 광고 4종</h4>
+  <div class="cards">
+    <div class="pcard"><h4>ADVoost Search</h4><p>파워링크 자동화 · 수동 운영 가이드 인입</p></div>
+    <div class="pcard"><h4>ADVoost Shopping</h4><p>쇼핑 콘텐츠·키워드 자동화 · 상품 피드/쇼핑EP 구조화가 핵심</p></div>
+    <div class="pcard"><h4>ADVoost Audience</h4><p>행동 기반 타겟 자동확장 · 기존 시드 재사용해 신규고객 확보</p></div>
+    <div class="pcard"><h4>ADVoost Creative</h4><p>소재 자동생성 AI 크리에이티브 · 브랜드 가이드라인 품질관리</p></div>
+  </div>
+
+  <h3>로드맵</h3>
+  <div class="road">
+    <div class="pt"><div class="dot"></div><div class="when">작년 5월</div><div class="what">ADVoost 라인업 확장</div></div>
+    <div class="pt"><div class="dot"></div><div class="when">작년 말</div><div class="what">AI 광고 시대 선언</div></div>
+    <div class="pt"><div class="dot"></div><div class="when">올해 3월</div><div class="what">통합 플랫폼 출시</div></div>
+    <div class="pt"><div class="dot"></div><div class="when">5월</div><div class="what">AI 브리핑 광고 베타</div></div>
+    <div class="pt fut"><div class="dot"></div><div class="when">3분기</div><div class="what">신규 AI 광고 상품</div></div>
+    <div class="pt fut"><div class="dot"></div><div class="when">4분기</div><div class="what">AI 광고 에이전트 공개 · AI탭 정량</div></div>
+  </div>
+  <p class="small"><b>AI 광고 에이전트</b> = 전문 에이전트 4개(타겟팅·크리에이티브·입찰·예산 영역) + 상위 <b>AI Orchestration</b>이 전체 통합 조율 → 4분기 공개 예정</p>
+
+  <h3>Key Takeaways</h3>
+  <ol>
+    <li>패러다임 변화는 <b>위기가 아닌 기회</b></li>
+    <li>글로벌 AI가 강해질수록 <b>네이버 광고·데이터 가치 상승</b></li>
+    <li>입찰 1위 경쟁 → <b>맥락 최적화(AEO) 중심</b>으로 전환</li>
+    <li>AI 브리핑 · AI 탭 · Agent N 등 <b>하반기 순차 출시</b></li>
+    <li>운영이 자동화돼도 <b>전략 설계 = 파트너사의 영역이 더 중요</b></li>
+  </ol>
+</section>
+
+<!-- SESSION 3 -->
+<section id="s3">
+  <div class="sesstag">SESSION 3</div>
+  <h2>파트너의 역할과 전략 전환</h2>
+  <p class="lead">발표: 최흥진 실장 (채널 컨설팅실) · "실전 노하우 공약집"</p>
+
+  <h3>핵심 질문: "AI·에이전트가 다 하면 파트너사는?"</h3>
+  <div class="vs">
+    <div class="col now">
+      <h4>지금 — 사람이 운영</h4>
+      <ul>
+        <li>예산 배분 · ROAS 관리 · 실시간 CPC 조정</li>
+        <li>이미지 소재 생성 · A/B 테스트</li>
+        <li>성과 리포트 추출·가공·인사이트</li>
+        <li>야간/주말 on·off, 끝없는 소재 요청 대응</li>
+      </ul>
+    </div>
+    <div class="vsm">→</div>
+    <div class="col ai">
+      <h4>앞으로 — AI Agent가 자동</h4>
+      <ul>
+        <li>입찰 자동 최적화(24/7 무중단)</li>
+        <li>AI 크리에이티브 소재·A/B 자동화</li>
+        <li>이상 감지·자동 리포트·인사이트</li>
+        <li>Perception → Reasoning → Action 자율 운영</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout key"><b>네이버의 선택</b>: 광고주를 직접 보지 않고 <b>"파트너와 함께"</b> 만든다 — 플랫폼이 파트너를 패싱하지 않겠다는 방향.</div>
+
+  <h3>네이버가 준비하는 4가지 지원</h3>
+  <div class="cards">
+    <div class="pcard"><h4>① 원페이 통합 계약</h4><p>7월 재계약 시 MCP 포함 <b>1브랜드=1계약</b>. SA·DA 분리(AS-IS) → 통합 정보·데이터 → <b>AI 통합 최적화</b>(TO-BE)</p></div>
+    <div class="pcard"><h4>② 강화된 API</h4><p>5월: GFA 호출량·Client ID·대량 소재 등록/편집 확대 / 3분기~: ADVoost 입찰·예산·on·off·리포트</p></div>
+    <div class="pcard"><h4>③ AEO 진단 도구</h4><p>AI가 사이트 못 읽으면 광고 선출 불가. 4월 베타·무상 → 하반기 전체. <b>진단 + 개선 기술지원</b></p></div>
+    <div class="pcard"><h4>④ AI 검수</h4><p>소재 급증 대응 → 검수 대기시간 단축, 반려 사유 빠른 안내</p></div>
+  </div>
+  <div class="callout note"><b>AEO 진단 리포트</b>: 등급(A/B/C) + 키워드 추출 여부 표시. <i>C등급 사례 = meta description 누락 + 이미지 alt 없음 → AI가 못 읽음. 개선 후 신규 키워드·이미지까지 광고 활용.</i></div>
+
+  <h3>운영 자동화 성장 4단계</h3>
+  <div class="ladder">
+    <div class="rung" style="background:#eef2f4"><span class="s">STAGE 1</span> 수동 운영</div>
+    <div class="rung" style="background:#e4f0ea;margin-left:24px"><span class="s">STAGE 2</span> 부분 자동화</div>
+    <div class="rung" style="background:#d6f0e1;margin-left:48px"><span class="s">STAGE 3</span> 공용 파이프라인 자동화</div>
+    <div class="rung" style="background:#bff0d4;margin-left:72px"><span class="s">STAGE 4 ★</span> AI 기반 자율 운영(성장까지 자동화)</div>
+  </div>
+  <p class="small">→ "운영은 AI에게, 사람은 전략·컨설팅으로" 이동의 근거.</p>
+
+  <div class="callout warn"><b>속도 경고</b> — GPT-3.5(2022) 변호사시험 하위 50% → 1년 만에 GPT-4 상위 10% 합격. 광고 시장의 변화도 그만큼 빠를 것.</div>
+</section>
+
+<!-- QA -->
+<section id="qa">
+  <h2>Q&amp;A 정리</h2>
+  <h3>사전 질문</h3>
+  <table>
+    <tr><th>질문</th><th>답변 요지</th></tr>
+    <tr><td>하반기 지원 확대 / 전략 파트너 추가?</td><td>계속 확장. 관심영역으로 <b>한강 시장·파워콘텐츠</b> 언급. "올해는 먼저 손 내밀겠다" → <b>하고 싶은 영역 적극 어필</b></td></tr>
+    <tr><td>신규 AI 상품 교육/온보딩?</td><td>3분기 출시 시 <b>웨비나 + 로컬 교육/컨퍼런스</b> 예정</td></tr>
+    <tr><td>AI 브리핑·탭 도입 후 검색광고 지표 변화?</td><td>3주차라 비교 이르나 <b>기존+신규 광고 동반 상승</b>(카니발 없음)</td></tr>
+    <tr><td>광고주센터 솔루션 플랫폼 연동?</td><td>마켓플레이스(베타). 데이터 연결 후 외부 활용이 나을 듯</td></tr>
+  </table>
+  <h3>현장 질문 (특히 주목)</h3>
+  <div class="callout note">
+    <b>Q. 스마트스토어엔 AEO/메타태그 개념이 크지 않은데, SEO 올리는 방법이 새로 생기나? (KT 리더)</b><br>
+    <b>A.</b> "스마트스토어는 네이버 최적화가 <b>불필요</b>하다. 네이버가 데이터를 더 정확히 안다. 오늘 말한 AEO는 <b>광고주 독립몰(자사 사이트)에 해당</b>하니 분리해서 봐라."
+  </div>
+  <div class="callout note">
+    <b>Q. 수수료를 광고비 %가 아니라 토큰/컨설팅비 형태로 바꿀 수 있나? (이지버즈 대표)</b><br>
+    <b>A.</b> "의미 있는 의견. AI 광고 수수료를 어떻게 할지는 <b>이제 막 고민 시작</b> 단계. 계속 의견 듣겠다." · AEO 진단 도구는 <b>외부 솔루션 업체와 협업</b>(특정 업체 고정 아님, 추후 확대 예정).
+  </div>
+</section>
+
+<!-- TODO -->
+<section id="todo">
+  <h2>파트너사가 준비할 것 <span class="small">(세미나 권고사항)</span></h2>
+  <ol>
+    <li><b>AI 브리핑 베타 선점</b> — 대상 계정(ADVoost 검색/쇼핑·쇼핑검색 운영) 점검, 자사몰 랜딩 AEO 작업 <b>(7/2 마감)</b></li>
+    <li><b>AEO 진단도구 신청</b> — 광고주 사이트 진단 → C/B등급 개선(meta description·이미지 alt·구조화)</li>
+    <li><b>자동입찰 ON + 전환 트래킹 구현</b> — AI 학습 전제. 입찰 잦은 변경·on/off 자제</li>
+    <li><b>신규 광고주 계정 통합</b> — 7월 원페이 통합계약 대비</li>
+    <li><b>PA 컨설팅 신청</b> — 미신청 파트너 다수, 초반 레퍼런스 확보</li>
+    <li><b>Naver Ads Expert 인증 / 신규 AI 상품 웨비나</b> 참여 (3분기 출시 대비)</li>
+    <li><b>역할 전환 인식</b> — "캠페인 운영 잘하기"에서 "광고주 사이트의 AI 최적화 진단·설득"으로</li>
+  </ol>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <h2>원본 발표 슬라이드 <span class="small">(현장 촬영 · 핵심 선별)</span></h2>
+  <p class="small">현장에서 촬영한 슬라이드 중 핵심 장면을 선별했습니다. 촬영 각도로 일부는 흐릴 수 있습니다.</p>
+  <h3>Session 1 · 2 (NCPP · AI 비전)</h3>
+  <div class="gallery">
+    <figure><img src="KakaoTalk_20260528_150531343_18.jpg" alt="slide"><figcaption>Mid · PA 검색광고 성과 (+95%)</figcaption></figure>
+    <figure><img src="KakaoTalk_20260528_150531343_19.jpg" alt="slide"><figcaption>크로스셀링 미디어 믹스 (1~5차)</figcaption></figure>
+    <figure><img src="KakaoTalk_20260528_150531343_22.jpg" alt="slide"><figcaption>ADVoost Shopping 성과 (73 · 93 · 91%)</figcaption></figure>
+    <figure><img src="KakaoTalk_20260528_150531343_24.jpg" alt="slide"><figcaption>Naver Ads Expert 4과목 (6월 · 9월)</figcaption></figure>
+    <figure><img src="KakaoTalk_20260528_150531343_17.jpg" alt="slide"><figcaption>Session 1 핵심 키워드 요약</figcaption></figure>
+    <figure><img src="KakaoTalk_20260528_150531343_15.jpg" alt="slide"><figcaption>검색 패러다임 3단계 전환</figcaption></figure>
+    <figure><img src="KakaoTalk_20260528_150531343_16.jpg" alt="slide"><figcaption>검색 변화 = 위기가 아닌 기회</figcaption></figure>
+    <figure><img src="KakaoTalk_20260528_150531343_12.jpg" alt="slide"><figcaption>AI 마케팅 광고 자동 노출 원리</figcaption></figure>
+    <figure><img src="KakaoTalk_20260528_150531343_01.jpg" alt="slide"><figcaption>AI 광고 에이전트 구조 (Orchestration)</figcaption></figure>
+    <figure><img src="KakaoTalk_20260528_150531343_03.jpg" alt="slide"><figcaption>ADVoost AI 자동화 4종</figcaption></figure>
+  </div>
+  <h3>Session 3 (파트너 역할 전환)</h3>
+  <div class="gallery">
+    <figure><img src="KakaoTalk_20260528_161133658.jpg" alt="slide"><figcaption>운영 자동화 성장 4단계 (STAGE)</figcaption></figure>
+    <figure><img src="KakaoTalk_20260528_161133658_01.jpg" alt="slide"><figcaption>강화된 API 지원 (5월 · GFA · ADVoost)</figcaption></figure>
+    <figure><img src="KakaoTalk_20260528_161133658_03.jpg" alt="slide"><figcaption>AI Agent 자율 운영 구조</figcaption></figure>
+    <figure><img src="KakaoTalk_20260528_161133658_04.jpg" alt="slide"><figcaption>파트너사 광고 운영 효율 (AEO 노하우)</figcaption></figure>
+  </div>
+</section>
+
+<footer>
+  [전사 공지] 2026 Naver Agency Connect 세미나 리포트 · 작성 2026-05-28<br>
+  <b>공유 팁</b>: 이 HTML과 이미지 파일을 <b>같은 폴더로 함께(압축) 전달</b>하세요. 단일 파일로 배포하려면 브라우저에서 <b>인쇄 → PDF로 저장</b>하면 이미지가 포함됩니다.
+</footer>
+
+</div>
+</body>
+</html>
